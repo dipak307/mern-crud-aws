@@ -17,7 +17,7 @@ jobs:
       # BACKEND SETUP
       # ------------------------------
       - name: Install backend dependencies
-        working-directory: ./server
+        working-directory: ./backend
         run: npm install
 
       - name: Create backend .env file
@@ -27,9 +27,9 @@ jobs:
           echo "${{ secrets.PROD_BACKEND_ENV }}" > .env
 
       - name: Start backend with PM2
-        working-directory: ./server
+        working-directory: ./backend
         run: |
-          /home/ubuntu/.nvm/versions/node/v22.16.0/bin/pm2 restart backend || /home/ubuntu/.nvm/versions/node/v22.16.0/bin/pm2 start index.js --name backend
+         pm2 restart backend || pm2 start index.js --name backend
 
 
       # ------------------------------
